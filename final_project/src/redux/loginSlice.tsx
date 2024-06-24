@@ -1,19 +1,26 @@
 import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+interface user{
+  username:string,
+  password:string,
+  token?:string|null
+}
 
-const initialState={
-  credentials:{
-    username:'',
-    password:''
-  },
+interface userstate{
+  credentials:user|null,
+  isLoading:boolean,
+  isError:boolean
+}
+const initialState:userstate={
+  credentials:null,
   isLoading:false,
   isError:false
 }
 
 
-export const loginApi=createAsyncThunk('get/loginApi',async()=>{
-  const gets=await axios.get('');
+export const loginApi=createAsyncThunk('get/loginApi',async(values:user)=>{
+  const gets=await axios.post('https://apistg.appnovahome.com/Account/Authenticate',values);
   return gets.data;
 })
 
