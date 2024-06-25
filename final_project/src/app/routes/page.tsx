@@ -3,6 +3,7 @@ import React from "react";
 import Dashboard from "@/components/dashboard/sideNav";
 import FillerContent from "@/components/DisplayCard/display";
 import { useRouter } from "next/navigation";
+import InitialDisplay from "@/components/PartnerDisplay/initialDisplay";
 
 const Yo = () => {
   const router = useRouter();
@@ -11,7 +12,7 @@ const Yo = () => {
       <div>
         <Dashboard />
         <div style={{ marginLeft: "185px" }}>
-          <h1>sahdnkjwhdhw</h1>
+          <InitialDisplay />
         </div>
         <div
           style={{

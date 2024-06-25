@@ -43,3 +43,42 @@
   font-size: 14px;
 }
 
+.homeDisplay {
+  padding: 20px;
+  border-radius: 15px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header h1 {
+  margin: 0;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.styledButton {
+  padding: 8px 16px;
+  font-size: 16px;
+  border-radius: 8px; /* Added border-radius */
+  border: 1px solid #007BFF; /* Border color */
+  background-color: #007BFF; /* Background color */
+  color: white; /* Text color */
+  cursor: pointer; /* Pointer cursor on hover */
+  transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+.styledButton:hover {
+  background-color: #0056b3; /* Darker background on hover */
+}
+
+.styledButton:focus {
+  outline: none; /* Remove default focus outline */
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Custom focus outline */
+}
