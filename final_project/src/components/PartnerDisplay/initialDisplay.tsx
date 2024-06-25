@@ -15,7 +15,7 @@ const InitialDisplay = () => {
   }, []);
 
   const viewButton = () => {
-    router.push("viewall");
+    router.push("/partners");
   };
 
   return (

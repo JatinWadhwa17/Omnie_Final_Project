@@ -82,3 +82,47 @@
   outline: none; /* Remove default focus outline */
   box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Custom focus outline */
 }
+
+.wrapper {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-left: 200px; /* Adjust margin as needed */
+}
+
+.button {
+  padding: 10px 15px;
+  background-color: beige;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #f0f0f0;
+}
+
+.input {
+  padding: 10px;
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-button {
+  background-color: lightblue;
+  color: white;
+  border: none;
+  margin-left: 10px;
+}
+
+.search-button:hover {
+  background-color: #4CAF50;
+}
+
