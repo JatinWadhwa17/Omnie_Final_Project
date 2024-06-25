@@ -1,11 +1,17 @@
 "use client";
 import React from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
 import { loginSchema } from "./yup";
 import { useDispatch, useSelector } from "react-redux";
 import "../../styles/style.css";
 import { useRouter } from "next/navigation";
 import { loginApi } from "@/redux/loginSlice";
+import { RootState } from "@/redux/store";
+import { AppDispatch } from "@/redux/store";
+import { useState } from "react";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import IconButton from "@mui/material/IconButton";
 
 interface val {
   username: string;
@@ -17,15 +23,35 @@ const initialValues = {
 };
 
 const Login = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
-  const dispatch = useDispatch();
+  const dispatch: AppDispatch = useDispatch();
 
-  const handleSubmit = (values: val) => {
+  const handleSubmit = (values: val, { resetForm }: FormikHelpers<val>) => {
     console.log(values);
-    dispatch(loginApi(values));
-    const data = useSelector((state) => state);
-    console.log(data);
+    dispatch(
+      loginApi({ username: values.username, password: values.password })
+    );
+    resetForm();
   };
+
+  const data = useSelector(
+    (state: RootState) => state.log.credentials?.data?.[0]
+  );
+  console.log(data);
+
+  if (data && data.token) {
+    localStorage.setItem("token", data.token);
+    router.push("/routes");
+  } else if (data && !data.token) {
+    console.log("hello");
+    alert("Wrong Credentials");
+  }
+
+  const handleIcon = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <div className="login-container">
       <Formik
@@ -48,14 +74,19 @@ const Login = () => {
               className="error-message"
             />
           </div>
-          <div>
-            <label htmlFor="password">Password</label>
+
+          <label htmlFor="password">Password</label>
+          <div className="password-wrapper">
             <Field
               id="password"
               name="password"
-              type="password"
+              type={showPassword ? "text" : "password"}
               className="form-control"
             />
+            <IconButton onClick={handleIcon} className="visibility-icon">
+              {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
+            </IconButton>
+
             <ErrorMessage
               name="password"
               component="div"
