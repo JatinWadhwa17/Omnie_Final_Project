@@ -13,6 +13,7 @@ interface userstate {
   isLoading: boolean;
   isError: boolean;
 }
+
 const initialState: userstate = {
   credentials: null,
   isLoading: false,
@@ -33,7 +34,11 @@ export const loginApi = createAsyncThunk(
 const loginSlice = createSlice({
   name: "login",
   initialState,
-  reducers: {},
+  reducers: {
+    logout:(state)=>{
+      state.credentials=null;
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(loginApi.pending, (state) => {
@@ -49,3 +54,4 @@ const loginSlice = createSlice({
 });
 
 export default loginSlice.reducer;
+export const {logout}=loginSlice.actions;
