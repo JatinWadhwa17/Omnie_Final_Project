@@ -81,59 +81,63 @@ export default function ViewAllPartners() {
     router.push(`/routes/${id}/${index}`);
   };
 
-  const rows = findSearch
-    ? search.map((item: any, index: number) => ({
-        id: index + 1,
-        companyname: item.companyName,
-        stores: item.storeCount,
-        agents: item.agentCount,
-        brands: item.brands.map((brand: Brand) => brand.code).join("|"),
-        meetings: `BAC ${item.allocatedSlots.bac} | ISV ${item.allocatedSlots.isv}`,
-        actions: (
-          <div>
-            <IconButton
-              color="primary"
-              aria-label="view"
-              onClick={() => handleDetails(item.id, index)}
-            >
-              <RemoveRedEyeIcon />
-            </IconButton>
-            <IconButton
-              color="secondary"
-              aria-label="delete"
-              onClick={() => handleDeletePartner(item.id)}
-            >
-              <DeleteForeverIcon />
-            </IconButton>
-          </div>
-        ),
-      }))
-    : response.map((item: any, index: number) => ({
-        id: index + 1,
-        companyname: item.companyName,
-        stores: item.storeCount,
-        agents: item.agentCount,
-        brands: item.brands.map((brand: Brand) => brand.code).join("|"),
-        meetings: `BAC ${item.allocatedSlots.bac} | ISV ${item.allocatedSlots.isv}`,
-        actions: (
-          <div>
-            <IconButton
-              color="primary"
-              aria-label="view"
-              onClick={() => handleDetails(item.id, index)}
-            >
-              <RemoveRedEyeIcon />
-            </IconButton>
-            <IconButton
-              color="secondary"
-              aria-label="delete"
-              onClick={() => handleDeletePartner(item.id)}
-            >
-              <DeleteForeverIcon />
-            </IconButton>
-          </div>
-        ),
-      }));
+  const rows = findSearch ? (
+    search.map((item: any, index: number) => ({
+      id: index + 1,
+      companyname: item.companyName,
+      stores: item.storeCount,
+      agents: item.agentCount,
+      brands: item.brands.map((brand: Brand) => brand.code).join("|"),
+      meetings: `BAC ${item.allocatedSlots.bac} | ISV ${item.allocatedSlots.isv}`,
+      actions: (
+        <div>
+          <IconButton
+            color="primary"
+            aria-label="view"
+            onClick={() => handleDetails(item.id, index)}
+          >
+            <RemoveRedEyeIcon />
+          </IconButton>
+          <IconButton
+            color="secondary"
+            aria-label="delete"
+            onClick={() => handleDeletePartner(item.id)}
+          >
+            <DeleteForeverIcon />
+          </IconButton>
+        </div>
+      ),
+    }))
+  ) : Array.isArray(response) ? (
+    response.map((item: any, index: number) => ({
+      id: index + 1,
+      companyname: item.companyName,
+      stores: item.storeCount,
+      agents: item.agentCount,
+      brands: item.brands.map((brand: Brand) => brand.code).join("|"),
+      meetings: `BAC ${item.allocatedSlots.bac} | ISV ${item.allocatedSlots.isv}`,
+      actions: (
+        <div>
+          <IconButton
+            color="primary"
+            aria-label="view"
+            onClick={() => handleDetails(item.id, index)}
+          >
+            <RemoveRedEyeIcon />
+          </IconButton>
+          <IconButton
+            color="secondary"
+            aria-label="delete"
+            onClick={() => handleDeletePartner(item.id)}
+          >
+            <DeleteForeverIcon />
+          </IconButton>
+        </div>
+      ),
+    }))
+  ) : (
+    <h1>No Data</h1>
+  );
 
   const token = localStorage.getItem("token");
 
@@ -141,7 +145,7 @@ export default function ViewAllPartners() {
     router.push("/");
   }
 
-  return (
+  return Array.isArray(response) ? (
     <Box sx={{ height: 400, width: "100%" }}>
       <DataGrid
         rows={rows}
@@ -156,5 +160,7 @@ export default function ViewAllPartners() {
         pageSizeOptions={[5]}
       />
     </Box>
+  ) : (
+    <h1>No data</h1>
   );
 }
