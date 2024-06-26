@@ -10,8 +10,14 @@ const InitialDisplay = () => {
   const dispatch: AppDispatch = useDispatch();
 
   const count = useSelector((state: RootState) => state.totalcount.totalcount);
+  const loading = useSelector((state: RootState) => state.totalcount.isLoading);
+
+  if (loading) {
+    <h1>Loading Data</h1>;
+  }
+
   useEffect(() => {
-    if (!count) dispatch(countApi());
+    dispatch(countApi());
   }, []);
 
   const viewButton = () => {

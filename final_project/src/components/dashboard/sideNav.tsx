@@ -38,7 +38,7 @@ const theme = createTheme({
 });
 
 const Dashboard = () => {
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
   const router = useRouter();
 
   const handleLogout = () => {
@@ -46,6 +46,14 @@ const Dashboard = () => {
     localStorage.removeItem("token");
     router.push("/");
   };
+  const handleNavigation = () => {
+    router.push("/routes");
+  };
+
+  const handlePartnerNavigation = () => {
+    router.push("/partners");
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Box sx={{ display: "flex" }}>
@@ -137,7 +145,17 @@ const Dashboard = () => {
             <List>
               {["Dashboard", "Partner", "Associate", "Utilities"].map(
                 (text, index) => (
-                  <ListItem button key={text}>
+                  <ListItem
+                    button
+                    key={text}
+                    onClick={() => {
+                      if (text === "Dashboard") {
+                        handleNavigation();
+                      } else if (text === "Partner") {
+                        handlePartnerNavigation();
+                      }
+                    }}
+                  >
                     <ListItemIcon>
                       {index % 2 === 0 ? <DashboardIcon /> : <PeopleIcon />}
                     </ListItemIcon>

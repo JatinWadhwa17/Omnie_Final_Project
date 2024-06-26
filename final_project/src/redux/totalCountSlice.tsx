@@ -3,6 +3,8 @@ import axios from "axios";
 
 const initialState = {
   totalcount: null,
+  isLoading: false,
+  isError: false,
 };
 const token = localStorage.getItem("token");
 
@@ -23,9 +25,17 @@ const CountSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(countApi.fulfilled, (state, action) => {
-      state.totalcount = action.payload;
-    });
+    builder
+      .addCase(countApi.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(countApi.fulfilled, (state, action) => {
+        state.totalcount = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(countApi.rejected, (state) => {
+        state.isError = true;
+      });
   },
 });
 

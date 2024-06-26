@@ -3,17 +3,14 @@ import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import CssBaseline from "@mui/material/CssBaseline";
-import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { Formik, Field, Form } from "formik";
 import "../../styles/form.css";
+import { TextField } from "@mui/material";
 
 const drawerWidth = 540;
 
@@ -113,36 +110,43 @@ const PersistentDrawerRight: React.FC<PersistentDrawerRightProps> = ({
                 <Typography variant="h6">Basic Information</Typography>
                 <div className="form-fields">
                   <Field
+                    as={TextField}
                     name="companyName"
                     placeholder="Company Name"
                     className="form-field"
                   />
                   <Field
+                    as={TextField}
                     name="companyWebsite"
                     placeholder="Company Website"
                     className="form-field"
                   />
                   <Field
+                    as={TextField}
                     name="ecommerce"
                     placeholder="Ecommerce"
                     className="form-field"
                   />
                   <Field
+                    as={TextField}
                     name="brandIds"
                     placeholder="Brand Rights"
                     className="form-field"
                   />
                   <Field
+                    as={TextField}
                     name="hoAddressLine1"
                     placeholder="Address 1*"
                     className="form-field"
                   />
                   <Field
+                    as={TextField}
                     name="hoAddressLine2"
                     placeholder="Address 2"
                     className="form-field"
                   />
                   <Field
+                    as={TextField}
                     name="hoCity"
                     placeholder="City"
                     className="form-field"
@@ -170,6 +174,7 @@ const PersistentDrawerRight: React.FC<PersistentDrawerRightProps> = ({
                     <option value="AZ" label="AZ" />
                   </Field>
                   <Field
+                    as={TextField}
                     name="hoZip"
                     placeholder="Zip"
                     className="form-field"

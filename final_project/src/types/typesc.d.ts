@@ -31,3 +31,12 @@ interface PageProps {
     details: string[];
   };
 }
+
+interface PartnerData {
+  id: number;
+  imageDetail: any; // Adjust the type as per your data structure
+  companyName: string;
+  companyWebsite: string;
+  ecommerce: boolean;
+  // Add other fields as necessary
+}

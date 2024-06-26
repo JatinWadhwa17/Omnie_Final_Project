@@ -3,12 +3,16 @@ import loginSlice from "./loginSlice";
 import totalCountSlice from "./totalCountSlice";
 import viewallSlice from "./viewallSlice";
 import deleteSlice from "./deleteSlice";
+import addSlice from "./addSlice";
+import searchSlice from "./searchSlice";
 
 const reducers = combineReducers({
   log: loginSlice,
   totalcount: totalCountSlice,
   partners: viewallSlice,
-  delpartner:deleteSlice
+  delpartner: deleteSlice,
+  addpartner: addSlice,
+  searchpartner: searchSlice,
 });
 
 const store = configureStore({
