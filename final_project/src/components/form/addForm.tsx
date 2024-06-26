@@ -13,6 +13,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { Formik, Field, Form } from "formik";
+import "../../styles/form.css";
 
 const drawerWidth = 540;
 
@@ -106,54 +107,71 @@ const PersistentDrawerRight: React.FC<PersistentDrawerRightProps> = ({
       <Box>
         <div>
           <h1>Add Partner Details</h1>
-          <Formik
-          // initialValues={initialValues}
-          // onSubmit={handleForm}
-          >
+          <Formik>
             <Form className="form-content">
               <div className="form-section">
                 <Typography variant="h6">Basic Information</Typography>
                 <div className="form-fields">
                   <Field
-                    id="companyName"
                     name="companyName"
                     placeholder="Company Name"
-                    variant="outlined"
-                    fullWidth
                     className="form-field"
                   />
                   <Field
-                    id="stores"
-                    name="stores"
-                    type="number"
-                    placeholder="Number of Stores"
-                    variant="outlined"
-                    fullWidth
+                    name="companyWebsite"
+                    placeholder="Company Website"
                     className="form-field"
                   />
                   <Field
-                    id="agents"
-                    name="agents"
-                    type="number"
-                    placeholder="Number of Agents"
-                    variant="outlined"
-                    fullWidth
+                    name="ecommerce"
+                    placeholder="Ecommerce"
                     className="form-field"
                   />
                   <Field
-                    id="brands"
-                    name="brands"
-                    placeholder="Brands"
-                    variant="outlined"
-                    fullWidth
+                    name="brandIds"
+                    placeholder="Brand Rights"
                     className="form-field"
                   />
                   <Field
-                    id="meetings"
-                    name="meetings"
-                    placeholder="Meetings BAC | ISV"
-                    variant="outlined"
-                    fullWidth
+                    name="hoAddressLine1"
+                    placeholder="Address 1*"
+                    className="form-field"
+                  />
+                  <Field
+                    name="hoAddressLine2"
+                    placeholder="Address 2"
+                    className="form-field"
+                  />
+                  <Field
+                    name="hoCity"
+                    placeholder="City"
+                    className="form-field"
+                  />
+                  <Field
+                    as="select"
+                    id="dropdown"
+                    name="hoCountryId"
+                    className="form-field"
+                  >
+                    <option value="" label="Select Country" />
+                    <option value="US" label="US" />
+                    <option value="IND" label="IND" />
+                    <option value="SA" label="SA" />
+                  </Field>
+                  <Field
+                    as="select"
+                    id="dropdown"
+                    name="hoStateId"
+                    className="form-field"
+                  >
+                    <option value="" label="Select State" />
+                    <option value="CA" label="CA" />
+                    <option value="NY" label="NY" />
+                    <option value="AZ" label="AZ" />
+                  </Field>
+                  <Field
+                    name="hoZip"
+                    placeholder="Zip"
                     className="form-field"
                   />
                 </div>

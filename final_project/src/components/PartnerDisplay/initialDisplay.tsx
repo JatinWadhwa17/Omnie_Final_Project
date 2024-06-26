@@ -11,14 +11,15 @@ const InitialDisplay = () => {
 
   const count = useSelector((state: RootState) => state.totalcount.totalcount);
   useEffect(() => {
-    dispatch(countApi());
+    if (!count) dispatch(countApi());
   }, []);
 
   const viewButton = () => {
     router.push("/partners");
   };
+  const token = localStorage.getItem("token");
 
-  return (
+  return token && count ? (
     <div className="homeDisplay">
       <div className="header">
         <h1>Partners</h1>
@@ -32,6 +33,8 @@ const InitialDisplay = () => {
       <p>Total</p>
       <h2>{count}</h2>
     </div>
+  ) : (
+    <p>Api call failed or invalid token</p>
   );
 };
 

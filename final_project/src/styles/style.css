@@ -16,3 +16,49 @@
   border-radius: 5px;
   background-color: rgba(255, 255, 255, 0.8);
 }
+
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.header {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #333;
+  width: 100%;
+}
+
+.subheader {
+  font-size: 1.5em;
+  margin-top: 30px;
+  color: #666;
+  width: 100%;
+}
+
+.info {
+  font-size: 1em;
+  margin: 10px 0;
+  color: #444;
+}
+
+.editIcon {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+  color: #888;
+}
+
+.leftColumn, .rightColumn {
+  flex: 1;
+  min-width: 300px; /* Adjust as necessary */
+  padding: 20px;
+}
+
+.leftColumn {
+  border-right: 1px solid #ccc; /* Optional: for visual separation */
+}

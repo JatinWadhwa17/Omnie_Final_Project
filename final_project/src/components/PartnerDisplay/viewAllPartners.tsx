@@ -13,22 +13,6 @@ import { IconButton } from "@mui/material";
 import { deleteApi } from "@/redux/deleteSlice";
 import { useRouter } from "next/navigation";
 
-interface Brand {
-  code: string;
-  color: string;
-  imagePath: string | null;
-  id: number;
-  name: string;
-}
-
-interface RowData {
-  id: number;
-  companyname: string;
-  stores: number;
-  agents: number;
-  brands: string;
-}
-
 const columns: GridColDef<RowData>[] = [
   {
     field: "companyname",
@@ -85,8 +69,9 @@ export default function ViewAllPartners() {
     dispatch(deleteApi());
   };
 
-  const handleDetails = (id: number) => {
-    router.push(`/routes/${id}`);
+  const handleDetails = (id: number, index: number) => {
+    console.log(index);
+    router.push(`/routes/${id}/${index}`);
   };
 
   const rows = response.map((item: any, index: number) => ({
@@ -101,7 +86,7 @@ export default function ViewAllPartners() {
         <IconButton
           color="primary"
           aria-label="view"
-          onClick={() => handleDetails(item.id)}
+          onClick={() => handleDetails(item.id, index)}
         >
           <RemoveRedEyeIcon />
         </IconButton>
@@ -115,6 +100,12 @@ export default function ViewAllPartners() {
       </div>
     ),
   }));
+
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    router.push("/");
+  }
 
   return (
     <Box sx={{ height: 400, width: "100%" }}>

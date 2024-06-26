@@ -23,7 +23,7 @@ export const deleteApi = createAsyncThunk("get/loginApi", async (idss) => {
         Authorization: `Bearer ${token}`,
       },
     },
-    idss
+    { idss }
   );
   console.log(idss);
   return idss;
