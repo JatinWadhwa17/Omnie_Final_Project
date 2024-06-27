@@ -40,3 +40,28 @@ interface PartnerData {
   ecommerce: boolean;
   // Add other fields as necessary
 }
+
+interface FormValues {
+  companyName: string;
+  companyWebsite: string;
+  ecommerce: string;
+  brandIds: string;
+  hoAddressLine1: string;
+  hoAddressLine2: string;
+  hoCity: string;
+  hoCountryId: string;
+  hoStateId: string;
+  hoZip: string;
+}
+
+
+interface val {
+  username: string;
+  password: string;
+}
+
+interface countss{
+  totalcount: number | null,
+  isLoading: boolean,
+  isError: boolean, 
+}

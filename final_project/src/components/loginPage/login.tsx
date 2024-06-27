@@ -13,11 +13,7 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import IconButton from "@mui/material/IconButton";
 
-interface val {
-  username: string;
-  password: string;
-}
-const initialValues = {
+const initialValues: val = {
   username: "",
   password: "",
 };

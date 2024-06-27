@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const initialState = {
+const initialState: countss = {
   totalcount: null,
   isLoading: false,
   isError: false,

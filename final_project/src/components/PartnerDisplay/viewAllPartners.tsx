@@ -78,66 +78,64 @@ export default function ViewAllPartners() {
 
   const handleDetails = (id: number, index: number) => {
     console.log(index);
-    router.push(`/routes/${id}/${index}`);
+    router.push(`/routes/id:${id}/${index}/individualDetials`);
   };
 
-  const rows = findSearch ? (
-    search.map((item: any, index: number) => ({
-      id: index + 1,
-      companyname: item.companyName,
-      stores: item.storeCount,
-      agents: item.agentCount,
-      brands: item.brands.map((brand: Brand) => brand.code).join("|"),
-      meetings: `BAC ${item.allocatedSlots.bac} | ISV ${item.allocatedSlots.isv}`,
-      actions: (
-        <div>
-          <IconButton
-            color="primary"
-            aria-label="view"
-            onClick={() => handleDetails(item.id, index)}
-          >
-            <RemoveRedEyeIcon />
-          </IconButton>
-          <IconButton
-            color="secondary"
-            aria-label="delete"
-            onClick={() => handleDeletePartner(item.id)}
-          >
-            <DeleteForeverIcon />
-          </IconButton>
-        </div>
-      ),
-    }))
-  ) : Array.isArray(response) ? (
-    response.map((item: any, index: number) => ({
-      id: index + 1,
-      companyname: item.companyName,
-      stores: item.storeCount,
-      agents: item.agentCount,
-      brands: item.brands.map((brand: Brand) => brand.code).join("|"),
-      meetings: `BAC ${item.allocatedSlots.bac} | ISV ${item.allocatedSlots.isv}`,
-      actions: (
-        <div>
-          <IconButton
-            color="primary"
-            aria-label="view"
-            onClick={() => handleDetails(item.id, index)}
-          >
-            <RemoveRedEyeIcon />
-          </IconButton>
-          <IconButton
-            color="secondary"
-            aria-label="delete"
-            onClick={() => handleDeletePartner(item.id)}
-          >
-            <DeleteForeverIcon />
-          </IconButton>
-        </div>
-      ),
-    }))
-  ) : (
-    <h1>No Data</h1>
-  );
+  const rows = findSearch
+    ? search.map((item: any, index: number) => ({
+        id: index + 1,
+        companyname: item.companyName,
+        stores: item.storeCount,
+        agents: item.agentCount,
+        brands: item.brands.map((brand: Brand) => brand.code).join("|"),
+        meetings: `BAC ${item.allocatedSlots.bac} | ISV ${item.allocatedSlots.isv}`,
+        actions: (
+          <div>
+            <IconButton
+              color="primary"
+              aria-label="view"
+              onClick={() => handleDetails(item.id, index)}
+            >
+              <RemoveRedEyeIcon />
+            </IconButton>
+            <IconButton
+              color="secondary"
+              aria-label="delete"
+              onClick={() => handleDeletePartner(item.id)}
+            >
+              <DeleteForeverIcon />
+            </IconButton>
+          </div>
+        ),
+      }))
+    : Array.isArray(response)
+    ? response.map((item: any, index: number) => ({
+        id: index + 1,
+        companyname: item.companyName,
+        stores: item.storeCount,
+        agents: item.agentCount,
+        brands: item.brands.map((brand: Brand) => brand.code).join("|"),
+        meetings: `BAC ${item.allocatedSlots.bac} | ISV ${item.allocatedSlots.isv}`,
+        actions: (
+          <div>
+            <IconButton
+              color="primary"
+              aria-label="view"
+              onClick={() => handleDetails(item.id, index)}
+            >
+              <RemoveRedEyeIcon />
+            </IconButton>
+            <IconButton
+              color="secondary"
+              aria-label="delete"
+              onClick={() => handleDeletePartner(item.id)}
+            >
+              <DeleteForeverIcon />
+            </IconButton>
+          </div>
+        ),
+      }))
+    : [];
 
   const token = localStorage.getItem("token");
 

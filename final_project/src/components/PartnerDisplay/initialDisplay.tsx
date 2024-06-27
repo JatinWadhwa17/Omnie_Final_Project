@@ -17,8 +17,8 @@ const InitialDisplay = () => {
   }
 
   useEffect(() => {
-    if (!count) dispatch(countApi());
-  }, []);
+    dispatch(countApi());
+  }, [count]);
 
   const viewButton = () => {
     router.push("/partners");
@@ -28,7 +28,7 @@ const InitialDisplay = () => {
     router.push("/");
   }
 
-  return token && count ? (
+  return typeof count === "number" ? (
     <div className="homeDisplay">
       <div className="header">
         <h1>Partners</h1>
@@ -43,7 +43,7 @@ const InitialDisplay = () => {
       <h2>{count}</h2>
     </div>
   ) : (
-    <p>Api call failed or invalid token</p>
+    <p>Generating Partners Count...</p>
   );
 };
 

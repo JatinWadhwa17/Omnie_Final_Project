@@ -14,19 +14,22 @@ const initialState: userstate = {
 };
 const token = localStorage.getItem("token");
 
-export const addApi = createAsyncThunk("get/loginApi", async (idss) => {
-  const gets = await axios.post(
-    "https://apistg.appnovahome.com/Partner/AddPartner",
-    { idss },
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
-  console.log(idss);
-  return idss;
-});
+export const addApi = createAsyncThunk(
+  "get/loginApi",
+  async (formdata: FormValues) => {
+    const gets = await axios.post(
+      "https://apistg.appnovahome.com/Partner/AddPartner",
+      { formdata },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    console.log(formdata);
+    return formdata;
+  }
+);
 
 const addSlice = createSlice({
   name: "login",

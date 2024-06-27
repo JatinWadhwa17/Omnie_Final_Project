@@ -8,9 +8,12 @@ import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import { Formik, Field, Form } from "formik";
+import { Formik, Field, Form, FormikHelpers } from "formik";
 import "../../styles/form.css";
 import { TextField } from "@mui/material";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux/store";
+import { addApi } from "@/redux/addSlice";
 
 const drawerWidth = 540;
 
@@ -75,8 +78,28 @@ const PersistentDrawerRight: React.FC<PersistentDrawerRightProps> = ({
   open,
   handleDrawerClose,
 }) => {
+  const dispatch: AppDispatch = useDispatch();
   // Updated function signature to accept props
   const theme = useTheme();
+
+  const initialValues: FormValues = {
+    companyName: "",
+    companyWebsite: "",
+    ecommerce: "",
+    brandIds: "",
+    hoAddressLine1: "",
+    hoAddressLine2: "",
+    hoCity: "",
+    hoCountryId: "",
+    hoStateId: "",
+    hoZip: "",
+  };
+
+  const onSubmit = (values: FormValues, helpers: FormikHelpers<FormValues>) => {
+    console.log(values);
+    helpers.resetForm();
+    dispatch(addApi(values));
+  };
 
   return (
     <Drawer
@@ -104,7 +127,7 @@ const PersistentDrawerRight: React.FC<PersistentDrawerRightProps> = ({
       <Box>
         <div>
           <h1>Add Partner Details</h1>
-          <Formik>
+          <Formik initialValues={initialValues} onSubmit={onSubmit}>
             <Form className="form-content">
               <div className="form-section">
                 <Typography variant="h6">Basic Information</Typography>
