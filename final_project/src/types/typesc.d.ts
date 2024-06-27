@@ -41,6 +41,12 @@ interface PartnerData {
   // Add other fields as necessary
 }
 
+interface userstate {
+  ids: number | any;
+  isLoading: boolean;
+  isError: boolean;
+}
+
 interface FormValues {
   companyName: string;
   companyWebsite: string;
@@ -65,3 +71,4 @@ interface countss{
   isLoading: boolean,
   isError: boolean, 
 }
+

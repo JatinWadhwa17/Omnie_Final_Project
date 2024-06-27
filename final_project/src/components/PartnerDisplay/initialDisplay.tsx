@@ -17,16 +17,16 @@ const InitialDisplay = () => {
   }
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      router.push("/");
+    }
     dispatch(countApi());
   }, [count]);
 
   const viewButton = () => {
     router.push("/partners");
   };
-  const token = localStorage.getItem("token");
-  if (!token) {
-    router.push("/");
-  }
 
   return typeof count === "number" ? (
     <div className="homeDisplay">

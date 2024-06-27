@@ -59,14 +59,15 @@ export default function ViewAllPartners() {
   const router = useRouter();
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      router.push("/");
+    }
     dispatch(partnerApi());
   }, []);
 
   const response = useSelector((state: RootState) => state.partners.dataarr);
-  console.log(response);
-
   const search = useSelector((state: RootState) => state.searchpartner.dataarr);
-  console.log(search);
 
   const findSearch = useSelector(
     (state: RootState) => state.searchpartner.searching
@@ -136,12 +137,6 @@ export default function ViewAllPartners() {
         ),
       }))
     : [];
-
-  const token = localStorage.getItem("token");
-
-  if (!token) {
-    router.push("/");
-  }
 
   return Array.isArray(response) ? (
     <Box sx={{ height: 400, width: "100%" }}>

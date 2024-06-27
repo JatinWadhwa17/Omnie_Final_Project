@@ -2,9 +2,8 @@
 import PersistentDrawerRight from "../form/addForm";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "@/redux/store";
+import { RootState, AppDispatch } from "@/redux/store";
 import { afterSearch, isSearching } from "@/redux/searchSlice";
-import { AppDispatch } from "@/redux/store";
 
 const SearchBar = () => {
   const dispatch: AppDispatch = useDispatch();

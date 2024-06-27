@@ -4,16 +4,27 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/redux/store";
 import EditIcon from "@mui/icons-material/Edit";
 import "../../../styles/style.css";
+import { useRouter } from "next/navigation";
 
 const Page: React.FC<PageProps> = ({ params }) => {
+  const router = useRouter();
+
   const response = useSelector(
     (state: RootState) => state.partners.dataarr as Partner[]
   );
   const index = parseInt(params.details[1]);
   const partner = response[index];
+
+  const goBack = () => {
+    router.push("/partners");
+  };
+
   return (
     <div className="container">
       <h1 className="header">You got this!</h1>
+      <button onClick={goBack} className="styledButton">
+        View All Partners
+      </button>
       <h1 className="header">
         {partner.companyName} #{partner.id}
       </h1>

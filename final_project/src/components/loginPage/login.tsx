@@ -6,8 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "../../styles/style.css";
 import { useRouter } from "next/navigation";
 import { loginApi } from "@/redux/loginSlice";
-import { RootState } from "@/redux/store";
-import { AppDispatch } from "@/redux/store";
+import { RootState, AppDispatch } from "@/redux/store";
 import { useState } from "react";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -24,7 +23,6 @@ const Login = () => {
   const dispatch: AppDispatch = useDispatch();
 
   const handleSubmit = (values: val, { resetForm }: FormikHelpers<val>) => {
-    console.log(values);
     dispatch(
       loginApi({ username: values.username, password: values.password })
     );
@@ -34,14 +32,10 @@ const Login = () => {
   const data = useSelector(
     (state: RootState) => state.log.credentials?.data?.[0]
   );
-  console.log(data);
 
   if (data && data.token) {
     localStorage.setItem("token", data.token);
     router.push("/routes");
-  } else if (data && !data.token) {
-    console.log("hello");
-    alert("Wrong Credentials");
   }
 
   const handleIcon = () => {
@@ -79,7 +73,7 @@ const Login = () => {
               type={showPassword ? "text" : "password"}
               className="form-control"
             />
-            <IconButton onClick={handleIcon} className="visibility-icon">
+            <IconButton onClick={handleIcon} className="styledButton">
               {showPassword ? <VisibilityOffIcon /> : <VisibilityIcon />}
             </IconButton>
 
@@ -89,7 +83,7 @@ const Login = () => {
               className="error-message"
             />
           </div>
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="styledButton">
             Submit
           </button>
         </Form>

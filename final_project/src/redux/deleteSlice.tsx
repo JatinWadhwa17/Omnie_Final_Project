@@ -1,12 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-interface userstate {
-  ids: number | any;
-  isLoading: boolean;
-  isError: boolean;
-}
-
 const initialState: userstate = {
   ids: null,
   isLoading: false,
