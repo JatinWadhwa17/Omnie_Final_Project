@@ -83,7 +83,7 @@ const PersistentDrawerRight: React.FC<PersistentDrawerRightProps> = ({
   const theme = useTheme();
 
   const initialValues: FormValues = {
-    companyName: "",
+    companyName: "omnie",
     companyWebsite: "",
     ecommerce: "",
     brandIds: "",
